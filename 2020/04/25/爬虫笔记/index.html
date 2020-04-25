@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://ysbigb.github.io">
   <title>爬虫笔记 | 特异型大光头的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="获取运行间隔时间import time  scale &#x3D; 50   print(&quot;执行开始&quot;.center(scale&#x2F;&#x2F;2,&quot;-&quot;))  # .center() 控制输出的样式，宽度为 25&#x2F;&#x2F;2，即 22，汉字居中，两侧填充 -  start &#x3D; time.perf_counter() # 调用一次 perf_counter()，从计算机系统里随机选一个">
+  <meta name="description" content="爬虫的笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="爬虫笔记">
 <meta property="og:url" content="https://ysbigb.github.io/2020/04/25/%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="特异型大光头的博客">
-<meta property="og:description" content="获取运行间隔时间import time  scale &#x3D; 50   print(&quot;执行开始&quot;.center(scale&#x2F;&#x2F;2,&quot;-&quot;))  # .center() 控制输出的样式，宽度为 25&#x2F;&#x2F;2，即 22，汉字居中，两侧填充 -  start &#x3D; time.perf_counter() # 调用一次 perf_counter()，从计算机系统里随机选一个">
+<meta property="og:description" content="爬虫的笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-25T09:02:07.160Z">
-<meta property="article:modified_time" content="2020-04-12T15:49:30.077Z">
+<meta property="article:modified_time" content="2020-04-25T10:48:30.362Z">
 <meta property="article:author" content="特异型大光头">
 <meta name="twitter:card" content="summary">
   
@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">特异型大光头</a></h1>
@@ -105,7 +105,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">特异型大光头</h1>
@@ -174,43 +174,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="获取运行间隔时间"><a href="#获取运行间隔时间" class="headerlink" title="获取运行间隔时间"></a>获取运行间隔时间</h1><pre><code>import time
-
-scale = 50 
-
-print(&quot;执行开始&quot;.center(scale//2,&quot;-&quot;))  # .center() 控制输出的样式，宽度为 25//2，即 22，汉字居中，两侧填充 -
-
-start = time.perf_counter() # 调用一次 perf_counter()，从计算机系统里随机选一个时间点A，计算其距离当前时间点B1有多少秒。当第二次调用该函数时，默认从第一次调用的时间点A算起，距离当前时间点B2有多少秒。两个函数取差，即实现从时间点B1到B2的计时功能。
-for i in range(scale+1):   
-    a = &#39;*&#39; * i             # i 个长度的 * 符号
-    b = &#39;.&#39; * (scale-i)  # scale-i） 个长度的 . 符号。符号 * 和 . 总长度为50 
-    c = (i/scale)*100  # 显示当前进度，百分之多少
-    dur = time.perf_counter() - start    # 计时，计算进度条走到某一百分比的用时
-    print(&quot;\r{:^3.0f}%[{}-&gt;{}]{:.2f}s&quot;.format(c,a,b,dur),end=&#39;&#39;)  # \r用来在每次输出完成后，将光标移至行首，这样保证进度条始终在同一行输出，即在一行不断刷新的效果；{:^3.0f}，输出格式为居中，占3位，小数点后0位，浮点型数，对应输出的数为c；{}，对应输出的数为a；{}，对应输出的数为b；{:.2f}，输出有两位小数的浮点数，对应输出的数为dur；end=&#39;&#39;，用来保证不换行，不加这句默认换行。
-    time.sleep(0.1)     # 在输出下一个百分之几的进度前，停止0.1秒
-print(&quot;\n&quot;+&quot;执行结果&quot;.center(scale//2,&#39;-&#39;))</code></pre><h1 id="通用爬虫模板"><a href="#通用爬虫模板" class="headerlink" title="通用爬虫模板"></a>通用爬虫模板</h1><pre><code>import requests
-def getHtmlTxt(url):
-    try:
-        r = requests.get(url, timeout = 30)
-        r.raise_for_status() #如果返回status_code不是200，就抛出异常
-        r.encoding = r.apparent_encoding
-        return r.text
-    except:
-        return &quot;产生异常&quot;
-
-if __name__ == &#39;__main__&#39;: #如果当前运行程序是该程序，则执行，如果作为库导入，则不运行
-    url = &quot;https://www.baidu.com&quot;
-    print(getHtmlTxt(url))</code></pre><h1 id="下行遍历"><a href="#下行遍历" class="headerlink" title="下行遍历"></a>下行遍历</h1><pre><code>soup.&lt;tag&gt;.children 返回iteration类型 仅儿子
+        <p>爬虫的笔记</p>
+<a id="more"></a>
+<h1 id="获取运行间隔时间"><a href="#获取运行间隔时间" class="headerlink" title="获取运行间隔时间"></a>获取运行间隔时间</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line"></span><br><span class="line">scale &#x3D; 50 </span><br><span class="line"></span><br><span class="line">print(&quot;执行开始&quot;.center(scale&#x2F;&#x2F;2,&quot;-&quot;))  # .center() 控制输出的样式，宽度为 25&#x2F;&#x2F;2，即 22，汉字居中，两侧填充 -</span><br><span class="line"></span><br><span class="line">start &#x3D; time.perf_counter() # 调用一次 perf_counter()，从计算机系统里随机选一个时间点A，计算其距离当前时间点B1有多少秒。当第二次调用该函数时，默认从第一次调用的时间点A算起，距离当前时间点B2有多少秒。两个函数取差，即实现从时间点B1到B2的计时功能。</span><br><span class="line">for i in range(scale+1):   </span><br><span class="line">    a &#x3D; &#39;*&#39; * i             # i 个长度的 * 符号</span><br><span class="line">    b &#x3D; &#39;.&#39; * (scale-i)  # scale-i） 个长度的 . 符号。符号 * 和 . 总长度为50 </span><br><span class="line">    c &#x3D; (i&#x2F;scale)*100  # 显示当前进度，百分之多少</span><br><span class="line">    dur &#x3D; time.perf_counter() - start    # 计时，计算进度条走到某一百分比的用时</span><br><span class="line">    print(&quot;\r&#123;:^3.0f&#125;%[&#123;&#125;-&gt;&#123;&#125;]&#123;:.2f&#125;s&quot;.format(c,a,b,dur),end&#x3D;&#39;&#39;)  # \r用来在每次输出完成后，将光标移至行首，这样保证进度条始终在同一行输出，即在一行不断刷新的效果；&#123;:^3.0f&#125;，输出格式为居中，占3位，小数点后0位，浮点型数，对应输出的数为c；&#123;&#125;，对应输出的数为a；&#123;&#125;，对应输出的数为b；&#123;:.2f&#125;，输出有两位小数的浮点数，对应输出的数为dur；end&#x3D;&#39;&#39;，用来保证不换行，不加这句默认换行。</span><br><span class="line">    time.sleep(0.1)     # 在输出下一个百分之几的进度前，停止0.1秒</span><br><span class="line">print(&quot;\n&quot;+&quot;执行结果&quot;.center(scale&#x2F;&#x2F;2,&#39;-&#39;))</span><br></pre></td></tr></table></figure>
+<h1 id="通用爬虫模板"><a href="#通用爬虫模板" class="headerlink" title="通用爬虫模板"></a>通用爬虫模板</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">def getHtmlTxt(url):</span><br><span class="line">    try:</span><br><span class="line">        r &#x3D; requests.get(url, timeout &#x3D; 30)</span><br><span class="line">        r.raise_for_status() #如果返回status_code不是200，就抛出异常</span><br><span class="line">        r.encoding &#x3D; r.apparent_encoding</span><br><span class="line">        return r.text</span><br><span class="line">    except:</span><br><span class="line">        return &quot;产生异常&quot;</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;: #如果当前运行程序是该程序，则执行，如果作为库导入，则不运行</span><br><span class="line">    url &#x3D; &quot;https:&#x2F;&#x2F;www.baidu.com&quot;</span><br><span class="line">    print(getHtmlTxt(url))</span><br></pre></td></tr></table></figure>
+<h1 id="下行遍历"><a href="#下行遍历" class="headerlink" title="下行遍历"></a>下行遍历</h1><pre><code>soup.&lt;tag&gt;.children 返回iteration类型 仅儿子
 soup.&lt;tag&gt;.contents 返回list类型 仅儿子
 soup.&lt;tag&gt;.descendants 返回iteration类型 所有子孙节点</code></pre><h1 id="上行遍历"><a href="#上行遍历" class="headerlink" title="上行遍历"></a>上行遍历</h1><pre><code>soup.&lt;tag&gt;.parent 仅父
 soup.&lt;tag&gt;.parents 所有上级节点</code></pre><h1 id="平行遍历"><a href="#平行遍历" class="headerlink" title="平行遍历"></a>平行遍历</h1><pre><code>soup.&lt;tag&gt;.next_sibling 仅下一个
 soup.&lt;tag&gt;.next_siblings 所有后面的
 soup.&lt;tag&gt;.previous_sibling 仅上一个
 soup.&lt;tag&gt;.previous_siblings 所有前面的</code></pre><h1 id="格式化和编码"><a href="#格式化和编码" class="headerlink" title="格式化和编码"></a>格式化和编码</h1><pre><code>.prettify() 格式化，等于在每个标签后面加上换行符</code></pre><h1 id="列表生成器"><a href="#列表生成器" class="headerlink" title="列表生成器"></a>列表生成器</h1><p>for后面的if是过滤条件，不能带else</p>
-<pre><code>a = [x+1 for x in range(1,11) if x%2 == 0 ]</code></pre><h1 id="列表相加"><a href="#列表相加" class="headerlink" title="列表相加"></a>列表相加</h1><pre><code>a = []
-for i in range(10):
-    a += [i]
-print(a) #输出[0,1,2,3,4,5,6,7,8,9]</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [x+1 for x in range(1,11) if x%2 &#x3D;&#x3D; 0 ]</span><br></pre></td></tr></table></figure>
+<h1 id="列表相加"><a href="#列表相加" class="headerlink" title="列表相加"></a>列表相加</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; []</span><br><span class="line">for i in range(10):</span><br><span class="line">    a +&#x3D; [i]</span><br><span class="line">print(a) #输出[0,1,2,3,4,5,6,7,8,9]</span><br></pre></td></tr></table></figure>
+
       
 
       
