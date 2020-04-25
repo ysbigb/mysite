@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>测试下markdown的视频音乐功能</title>
+      <link href="/mysite/2020/04/25/%E6%B5%8B%E8%AF%95%E4%B8%8Bmarkdown%E7%9A%84%E8%A7%86%E9%A2%91%E9%9F%B3%E4%B9%90%E5%8A%9F%E8%83%BD/"/>
+      <url>/mysite/2020/04/25/%E6%B5%8B%E8%AF%95%E4%B8%8Bmarkdown%E7%9A%84%E8%A7%86%E9%A2%91%E9%9F%B3%E4%B9%90%E5%8A%9F%E8%83%BD/</url>
+      
+        <content type="html"><![CDATA[<h1 id="这是个视频"><a href="#这是个视频" class="headerlink" title="这是个视频"></a>这是个视频</h1><iframe src="//player.bilibili.com/player.html?aid=57947188&bvid=BV1L4411c7fe&cid=101120972&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>笔记</title>
       <link href="/mysite/2020/04/25/%E7%AC%94%E8%AE%B0/"/>
       <url>/mysite/2020/04/25/%E7%AC%94%E8%AE%B0/</url>
