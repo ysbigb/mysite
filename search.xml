@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>Django踩到的坑</title>
+      <link href="/mysite/2020/04/25/Django%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/"/>
+      <url>/mysite/2020/04/25/Django%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</url>
+      
+        <content type="html"><![CDATA[<p>#记录下最近django学习踩的坑</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vue中this的小问题</title>
+      <link href="/mysite/2020/04/25/vue%E5%92%8Cjs%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
+      <url>/mysite/2020/04/25/vue%E5%92%8Cjs%E7%9A%84%E5%B0%8F%E5%9D%91/</url>
+      
+        <content type="html"><![CDATA[<pre><code>g5rimgSrc() {        let count = 1        let that = this //执行setInterval click 异步axios等事件都会导致this的作用域改变,此时this指向了其他        setInterval(function(){          console.log(this)          console.log(that)          that.g5rsrc = `../../../static/img/g5r${count}.png`          count=count+1          if (count &gt; 3) {            count = 1          }        },5000)      }</code></pre><p>今天写vue的一个小问题，我想通过setInterval改变data中一个叫g5rsrc的值，但是失败了<br>原因是setInterval执行后，里面的this指向了window，没有指向vue，<br>此时内部的this是</p><pre><code>    window{}</code></pre><p>that是</p><pre><code>    VueComponet{}</code></pre><p>可能会发生的还有click事件，异步axios</p><pre><code>//代码等遇到补充</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> vue、js </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>测试下markdown的视频音乐功能</title>
       <link href="/mysite/2020/04/25/%E6%B5%8B%E8%AF%95%E4%B8%8Bmarkdown%E7%9A%84%E8%A7%86%E9%A2%91%E9%9F%B3%E4%B9%90%E5%8A%9F%E8%83%BD/"/>
       <url>/mysite/2020/04/25/%E6%B5%8B%E8%AF%95%E4%B8%8Bmarkdown%E7%9A%84%E8%A7%86%E9%A2%91%E9%9F%B3%E4%B9%90%E5%8A%9F%E8%83%BD/</url>
